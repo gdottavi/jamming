@@ -12,15 +12,18 @@ function Track(props) {
         }
         else {
             return (
-                <button className="Track-action">+</button>
+                <button className="Track-action" onClick={addTrack}>+</button>
             )
         }
+    }
+
+    function addTrack(){
+        props.onAdd(props.track); 
     }
 
     return (
         <div className="Track">
             <div className="Track-information">
-                {console.log("test")}
                 <h3>{props.track.name}</h3>
                 <p>{props.track.artist} | {props.track.album}</p>
             </div>

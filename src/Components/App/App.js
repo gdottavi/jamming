@@ -22,20 +22,40 @@ function App() {
   ])
 
   const playlistName = "Greg's Chilling List";
-  const playlistTracks = [
+  const [playlistTracks, setPlaylistTracks] = useState([
     {
       name: 'Levee Song',
       artist: 'Led Zepplen',
       album: 'Led Zepplen IV',
-      id: 1
+      id: 5
     },
     {
       name: 'Rocket Man',
       artist: 'Elton Jon',
       album: 'Rocket Man',
-      id: 2
+      id: 6
     }
-  ]
+  ])
+
+  /**
+   * Adds a track to a playlist
+   * @param track 
+   */
+  function addTrack(track){
+
+    console.log("in add track"); 
+    console.log(track); 
+
+    //do not add to track if already in playlist
+    if(playlistTracks.find(savedTrack => savedTrack.id === track.id)){
+      console.log("found"); 
+      return; 
+    }
+
+    console.log("set"); 
+
+    setPlaylistTracks([...playlistTracks, track])
+  }
 
   return (
     <div>
@@ -43,7 +63,7 @@ function App() {
       <div className="App">
         <SearchBar/>
         <div className="App-playlist">
-          <SearchResults searchResults={searchResults}/>
+          <SearchResults searchResults={searchResults} onAdd={addTrack}/>
           <Playlist name={playlistName} tracks={playlistTracks}/>
         </div>
       </div>

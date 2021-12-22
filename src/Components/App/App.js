@@ -43,18 +43,24 @@ function App() {
    */
   function addTrack(track){
 
-    console.log("in add track"); 
-    console.log(track); 
-
     //do not add to track if already in playlist
     if(playlistTracks.find(savedTrack => savedTrack.id === track.id)){
-      console.log("found"); 
       return; 
     }
 
-    console.log("set"); 
-
     setPlaylistTracks([...playlistTracks, track])
+  }
+
+  /**
+   * Removes a track from a playlist
+   *
+   * @param {*} track - track to remove from playlist
+   */
+  function removeTrack(track){
+
+    let updatedPlayListTracks = playlistTracks.filter(playlistTrack => playlistTrack.id !== track.id)
+    setPlaylistTracks(updatedPlayListTracks); 
+
   }
 
   return (
@@ -64,7 +70,7 @@ function App() {
         <SearchBar/>
         <div className="App-playlist">
           <SearchResults searchResults={searchResults} onAdd={addTrack}/>
-          <Playlist name={playlistName} tracks={playlistTracks}/>
+          <Playlist name={playlistName} tracks={playlistTracks} onRemove={removeTrack}/>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ function TrackList(props) {
 
     const trackList = tracks.map((track) => {
         return (
-            <Track track={track} key={track.id} onAdd={props.onAdd}/>
+            <Track track={track} key={track.id} onAdd={props.onAdd} onRemove={props.onRemove} isRemoval={props.isRemoval}/>
         )
     });
 

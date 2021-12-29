@@ -4,9 +4,6 @@ import Track from '../Track/Track';
 function TrackList(props) {
 
     const tracks = props.tracks;
-    console.log("tracklist: ");
-    console.log(tracks);
-
 
     const trackList = tracks.map((track) => {
         return (

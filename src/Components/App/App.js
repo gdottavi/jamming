@@ -21,7 +21,8 @@ function App() {
     }
   ])
 
-  const playlistName = "Greg's Chilling List";
+ 
+  const [playlistName, setPlaylistName] = useState("Greg's Stateful Playlist")
   const [playlistTracks, setPlaylistTracks] = useState([
     {
       name: 'Levee Song',
@@ -63,6 +64,27 @@ function App() {
 
   }
 
+
+  /**
+   * Updates the name of a playlist
+   *
+   * @param {*} name - new name of playlist
+   */
+  function updatePlaylistName(name){
+    setPlaylistName(name); 
+  }
+
+  /**
+   *saves user created playlist to account
+   *
+   */
+  function savePlaylist(){
+      let trackURIs = []; 
+      for(const track of playlistTracks){
+        trackURIs.push(track.uri); 
+      }
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
@@ -70,7 +92,7 @@ function App() {
         <SearchBar/>
         <div className="App-playlist">
           <SearchResults searchResults={searchResults} onAdd={addTrack}/>
-          <Playlist name={playlistName} tracks={playlistTracks} onRemove={removeTrack}/>
+          <Playlist name={playlistName} tracks={playlistTracks} onRemove={removeTrack} onNameChange={updatePlaylistName} onSave={savePlaylist}/>
         </div>
       </div>
     </div>
